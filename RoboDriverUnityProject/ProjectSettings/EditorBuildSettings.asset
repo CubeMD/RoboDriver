@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/RoboDriver.unity
+    guid: 2f240194c86c6e44093928e06dc2599f
   m_configObjects: {}
