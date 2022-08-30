@@ -3,7 +3,7 @@ using Random = UnityEngine.Random;
 
 public class Target : MonoBehaviour
 {
-    private const float SPAWN_DISTANCE = 25f;
+    private const float AREA_HALF_SIZE = 25f;
     
     private void OnEnable()
     {
@@ -22,9 +22,9 @@ public class Target : MonoBehaviour
     public void ResetTarget()
     {
         Vector3 offset = new Vector3(
-            Random.Range(-SPAWN_DISTANCE, SPAWN_DISTANCE),
+            Random.Range(-AREA_HALF_SIZE, AREA_HALF_SIZE),
             1.5f,
-            Random.Range(-SPAWN_DISTANCE, SPAWN_DISTANCE));
+            Random.Range(-AREA_HALF_SIZE, AREA_HALF_SIZE));
 
         transform.localPosition = offset;
     }

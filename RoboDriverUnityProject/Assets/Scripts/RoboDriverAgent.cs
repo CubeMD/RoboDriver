@@ -1,30 +1,22 @@
-using MLAgentsDebugTool.Agent;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class RoboDriverAgent : DebuggableAgent
+public class RoboDriverAgent : Agent
 {
     [SerializeField] private float movementSpeed = 8.5f;
-    [SerializeField] private float rotationSpeed = 4f;
+    [SerializeField] private float rotationSpeed = 1.5f;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Target target;
     
-    private float areaHalfSize;
-
-    public override void Initialize()
-    {
-        areaHalfSize = Academy.Instance.EnvironmentParameters.GetWithDefault("AreaSize", 50f) / 2;
-        movementSpeed = Academy.Instance.EnvironmentParameters.GetWithDefault("AgentMovementSpeed", movementSpeed);
-        rotationSpeed = Academy.Instance.EnvironmentParameters.GetWithDefault("AgentMovementSpeed", rotationSpeed);
-    }
+    private const float AREA_HALF_SIZE = 25f;
 
     public override void OnEpisodeBegin()
     {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        transform.localPosition = new Vector3(Random.Range(-areaHalfSize, areaHalfSize), 0, Random.Range(-areaHalfSize, areaHalfSize));
+        transform.localPosition = new Vector3(Random.Range(-AREA_HALF_SIZE, AREA_HALF_SIZE), 0, Random.Range(-AREA_HALF_SIZE, AREA_HALF_SIZE));
         transform.rotation = Quaternion.Euler(0, Random.Range(-180f, 180f), 0);
         
         target.ResetTarget();
@@ -50,7 +42,6 @@ public class RoboDriverAgent : DebuggableAgent
         
         ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
         discreteActions[0] = userInputAction;
-
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -72,12 +63,11 @@ public class RoboDriverAgent : DebuggableAgent
         {
             rb.angularVelocity = Vector3.up * rotationSpeed;
         }
-
-        base.OnActionReceived(actions);
     }
 
     public void TargetCollected()
     {
         AddReward(10f);
+        EndEpisode();
     }
 }
