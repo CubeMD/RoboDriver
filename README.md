@@ -1,5 +1,5 @@
 # RoboDriver
-A Unity ML-Agents environment for robotics transfer learning research.
+A Unity ML-Agents environment for robotics transfer learning research. [This](https://github.com/Laggg/rl-robotics) repo contains the transfer learning and robotics parts.
 
 ## Agent trained using ML-Agents
 
@@ -18,7 +18,7 @@ Training process of an agent which takes 25 decisions per second
 ![runs](/Images/agentDecisionPeriod2.png)
 
 
-## Installation
+## Python Installation
 
 1. Clone the project using a version control system of your choice.
 2. Download and install the [Anaconda](https://www.anaconda.com/products/individual). It is important to select `Just Me` in `Install for:` step and add Anaconda to the path to allow you to use the included batch files.
@@ -50,6 +50,10 @@ Manual running (If Conda is not in Path and batch files throw errors):
 2. Run `activate RoboDriver`
 3. Run `jupyter lab`
 4. Navigate to notebooks folder and run the notebook
+
+## Unity Installation
+
+1. Install [Unity Hub](https://unity3d.com/get-unity/download) and [Unity Engine](https://unity3d.com/get-unity/download/archive) 2020.3.25f1.
 
 ## Unity project structure
 
